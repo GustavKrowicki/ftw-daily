@@ -33,6 +33,7 @@ class EditListingPhotosPanel extends Component {
     const classes = classNames(rootClass, className);
     const currentListing = ensureOwnListing(listing);
 
+    
     const isPublished =
       currentListing.id && currentListing.attributes.state !== LISTING_STATE_DRAFT;
     const panelTitle = isPublished ? (

@@ -85,10 +85,38 @@ export const filters = [
       // Note: label is not added through the translation files
       // to make filter customizations a bit easier.
       options: [
-        { key: 'smoke', label: 'Smoke' },
-        { key: 'electric', label: 'Electric' },
-        { key: 'wood', label: 'Wood' },
-        { key: 'other', label: 'Other' },
+        {
+          key: 'Italiensk',
+          label: 'Italiensk',
+        },
+        {
+          key: 'Mexicansk',
+          label: 'mexicansk',
+        },
+        {
+          key: 'comfort food',
+          label: 'comfort food',
+        },
+        {
+          key: 'Dansk ',
+          label: 'Dansk',
+        },
+        {
+          key: 'Dessert',
+          label: 'Dessert',
+        },
+        {
+          key: 'Kaffe og kage',
+          label: 'Kaffe og kage',
+        },
+        {
+          key: 'Amerikansk',
+          label: 'Amerikansk',
+        },
+        {
+          key: 'Asiatisk',
+          label: 'Asiatisk',
+        },
       ],
     },
   },
@@ -101,7 +129,7 @@ export const filters = [
     config: {
       // Optional modes: 'has_all', 'has_any'
       // https://www.sharetribe.com/api-reference/marketplace.html#extended-data-filtering
-      searchMode: 'has_all',
+      searchMode: 'has_any',
 
       // "key" is the option you see in Flex Console.
       // "label" is set here for this web app's UI only.
@@ -109,36 +137,36 @@ export const filters = [
       // to make filter customizations a bit easier.
       options: [
         {
-          key: 'towels',
-          label: 'Towels',
+          key: 'Italiensk',
+          label: 'Italiensk',
         },
         {
-          key: 'bathroom',
-          label: 'Bathroom',
+          key: 'Mexicansk',
+          label: 'mexicansk',
         },
         {
-          key: 'swimming_pool',
-          label: 'Swimming pool',
+          key: 'comfort food',
+          label: 'comfort food',
         },
         {
-          key: 'own_drinks',
-          label: 'Own drinks allowed',
+          key: 'Dansk ',
+          label: 'Dansk',
         },
         {
-          key: 'jacuzzi',
-          label: 'Jacuzzi',
+          key: 'Dessert',
+          label: 'Dessert',
         },
         {
-          key: 'audiovisual_entertainment',
-          label: 'Audiovisual entertainment',
+          key: 'Kaffe og kage',
+          label: 'Kaffe og kage',
         },
         {
-          key: 'barbeque',
-          label: 'Barbeque',
+          key: 'Amerikansk',
+          label: 'Amerikansk',
         },
         {
-          key: 'own_food_allowed',
-          label: 'Own food allowed',
+          key: 'Asiatisk',
+          label: 'Asiatisk',
         },
       ],
     },
