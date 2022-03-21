@@ -41,7 +41,6 @@ export const TABS = [
   DESCRIPTION,
   MENU,
   FEATURES,
-  
   POLICY,
   LOCATION,
   PRICING,
@@ -103,7 +102,7 @@ const tabCompleted = (tab, listing) => {
     case FEATURES:
       return !!(publicData && publicData.amenities);
     case MENU:
-        return !!(publicData && publicData.menu);
+        return !!(publicData && publicData?.customers);
     case POLICY:
       return !!(publicData && typeof publicData.rules !== 'undefined');
     case LOCATION:

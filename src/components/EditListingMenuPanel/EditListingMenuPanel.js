@@ -101,7 +101,6 @@ EditListingMenuPanel.propTypes = {
   disabled: bool.isRequired,
   ready: bool.isRequired,
   onSubmit: func.isRequired,
-
   submitButtonText: string.isRequired,
   panelUpdated: bool.isRequired,
   updateInProgress: bool.isRequired,
