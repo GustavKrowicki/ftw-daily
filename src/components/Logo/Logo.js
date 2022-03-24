@@ -4,30 +4,25 @@ import classNames from 'classnames';
 
 import config from '../../config';
 import IconLogo from './IconLogo';
-import LogoImage from './saunatime-logo.png';
+import LogoImage from './catery_logo_desktop.png';
+import DesktopLogoImage from './catery_logo_desktop.png';
+import MobileLogoImage from './catery_logo_mobile.png';
 import css from './Logo.module.css';
 
 const Logo = props => {
   const { className, format, ...rest } = props;
-  const mobileClasses = classNames(css.logoMobile, className);
+  const isMobile = format !== 'desktop';
+  const classes = classNames(className, { [css.logoMobile]: isMobile });
+  const logoImage = isMobile ? MobileLogoImage : DesktopLogoImage;
 
-  if (format === 'desktop') {
-    return <img className={className} src={LogoImage} alt={config.siteTitle} {...rest} />;
-  }
-
-  return <IconLogo className={mobileClasses} {...rest} />;
-};
-
-const { oneOf, string } = PropTypes;
-
-Logo.defaultProps = {
-  className: null,
-  format: 'desktop',
-};
-
-Logo.propTypes = {
-  className: string,
-  format: oneOf(['desktop', 'mobile']),
+  return (
+    <img
+      className={classes}
+      src={logoImage}
+      alt={config.siteTitle}
+      {...rest}
+    />
+  );
 };
 
 export default Logo;
