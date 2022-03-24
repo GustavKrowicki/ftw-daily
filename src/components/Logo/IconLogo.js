@@ -21,6 +21,7 @@ const IconLogo = props => {
   );
 };
 
+
 const { string } = PropTypes;
 
 IconLogo.defaultProps = {
