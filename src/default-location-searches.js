@@ -11,36 +11,36 @@ const defaultLocations = [
   {
     id: 'default-helsinki',
     predictionPlace: {
-      address: 'Helsinki, Finland',
-      bounds: new LatLngBounds(new LatLng(60.29783, 25.25448), new LatLng(59.92248, 24.78287)),
+      address: 'Midtjylland, Danmark',
+      bounds: new LatLngBounds(new LatLng(56.8729966995766, 11.7609968845274), new LatLng(55.6031775143111, 7.99758580203607)),
     },
   },
   {
     id: 'default-turku',
     predictionPlace: {
-      address: 'Turku, Finland',
-      bounds: new LatLngBounds(new LatLng(60.53045, 22.38197), new LatLng(60.33361, 22.06644)),
+      address: 'Nordjylland, Danmark',
+      bounds: new LatLngBounds(new LatLng(57.8052466993118, 11.3001276978709), new LatLng(56.5504110062672, 8.11367660042932)),
     },
   },
   {
     id: 'default-tampere',
     predictionPlace: {
-      address: 'Tampere, Finland',
-      bounds: new LatLngBounds(new LatLng(61.83657, 24.11838), new LatLng(61.42728, 23.5422)),
+      address: 'Syddanmark, danmark',
+      bounds: new LatLngBounds(new LatLng(55.9566299889953, 11.1181650851614), new LatLng(54.66448010157448, 7.97272240106995)),
     },
   },
   {
     id: 'default-oulu',
     predictionPlace: {
-      address: 'Oulu, Finland',
-      bounds: new LatLngBounds(new LatLng(65.56434, 26.77069), new LatLng(64.8443, 24.11494)),
+      address: 'Sjælland, Danmark',
+      bounds: new LatLngBounds(new LatLng(56.39584604, 12.63496885), new LatLng(54.84477417, 10.65428283)),
     },
   },
   {
     id: 'default-ruka',
     predictionPlace: {
-      address: 'Ruka, Finland',
-      bounds: new LatLngBounds(new LatLng(66.16997, 29.16773), new LatLng(66.16095, 29.13572)),
+      address: 'Hovestaden, Danmark',
+      bounds: new LatLngBounds(new LatLng(55.97898491, 12.79930498), new LatLng(55.25031814, 11.86906396)),
     },
   },
 ];
