@@ -196,7 +196,7 @@
 /* Desktop and Mobile: searches - first column */
 .searches {
   order: 3;
-  flex-basis: 165px;
+  flex-basis: 220px;
   margin-right: 24px;
   margin-bottom: 24px;
 
