@@ -17,7 +17,7 @@
 :root {
   /* ================ Colors ================ */
 
-  --marketplaceColor: #d6960d;
+  --marketplaceColor: #48702d;
   --marketplaceColorLight: #48702d;
   --marketplaceColorDark: #597708;
 
@@ -36,10 +36,10 @@
 
   --matterColorDark: #000000;
   --matterColor: #4a4a4a;
-  --matterColorAnti: #b2b2b2;
-  --matterColorNegative: #e7e7e7;
-  --matterColorBright: #fcfcfc;
-  --matterColorLight: #ffffff;
+  --matterColorAnti: #e0ad03;
+  --matterColorNegative: #48702d;
+  --matterColorBright: #f6f2e9;
+  --matterColorLight: #f6f2e9;
 
   --matterColorLightTransparent: rgba(255, 255, 255, 0.65);
 
