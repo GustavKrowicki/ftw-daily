@@ -89,7 +89,7 @@
   /* ================ Hero title ================ */
 
   --marketplaceHeroTitleFontStyles: {
-    font-weight: var(--fontWeightBold);
+    font-weight: var(--fontWeightMedium);
     font-size: 36px;
     line-height: 36px;
     letter-spacing: -0.7px;
@@ -392,7 +392,7 @@
   /* ================ Buttons ================ */
 
   --marketplaceButtonFontStyles: {
-    font-family: 'ibm-plex-mono', Helvetica, Arial, sans-serif;
+    font-family: 'inter', Helvetica, Arial, sans-serif;
     font-weight: var(--fontWeightSemiBold);
     font-size: 16px;
     line-height: 24px;

@@ -7,7 +7,7 @@
 
   width: 100%;
   padding: 24px 24px 42px 24px;
-  background-color: var(--matterColorBright);
+  background-color: var(--marketplaceColor);
 
   @media (--viewportMedium) {
     padding: 0 24px 33px 24px;
@@ -176,7 +176,7 @@
   /* Font */
   @apply --marketplaceH5FontStyles;
   line-height: 20px;
-  color: var(--matterColor);
+  color: var(--matterColorLight);
   transition: var(--transitionStyleButton);
 
   margin-top: 0;
