@@ -7,7 +7,7 @@
 
   width: 100%;
   padding: 24px 24px 42px 24px;
-  background-color: var(--marketplaceColor);
+  background-color: var(--matterColorBright);
 
   @media (--viewportMedium) {
     padding: 0 24px 33px 24px;
@@ -136,7 +136,7 @@
 }
 
 .copyrightLink {
-  color: var(--matterColor);
+  color: var(--marketplaceColor);
   transition: var(--transitionStyleButton);
 
   &:hover {
@@ -176,14 +176,14 @@
   /* Font */
   @apply --marketplaceH5FontStyles;
   line-height: 20px;
-  color: var(--matterColorLight);
+  color: var(--marketplaceColor);
   transition: var(--transitionStyleButton);
 
   margin-top: 0;
   margin-bottom: 12px;
 
   &:hover {
-    color: var(--marketplaceColor);
+    color: var(--mattercolorbright);
     text-decoration: none;
   }
 
@@ -263,14 +263,14 @@
 .terms {
   /* Font */
   @apply --marketplaceTinyFontStyles;
-  color: var(--matterColorAnti);
+  color: var(--marketplaceColor);
   transition: var(--transitionStyleButton);
 
   margin-top: 0;
   margin-bottom: 0;
 
   &:hover {
-    color: var(--marketplaceColor);
+    color: var(--matterColorLight);
     text-decoration: none;
   }
 
@@ -297,7 +297,7 @@
   justify-content: space-between;
   align-items: flex-end;
 
-  background-color: var(--matterColorLight);
+  background-color: var(--marketplaceColor);
 
   @media (--viewportMedium) {
     display: none;
@@ -307,7 +307,7 @@
 .organizationCopyrightMobile {
   /* Font */
   @apply --marketplaceTinyFontStyles;
-  color: var(--matterColorAnti);
+  color: var(--matterColorBright);
   transition: var(--transitionStyleButton);
 
   /* Tell parent component how much space this one prefers */
@@ -317,7 +317,7 @@
   margin-bottom: 0;
 
   &:hover {
-    color: var(--marketplaceColor);
+    color: var(--matterColorBright);
     text-decoration: none;
   }
 }

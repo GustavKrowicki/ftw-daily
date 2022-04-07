@@ -46,6 +46,9 @@ export const EditListingMenuFormComponent = props => (
         id: 'EditListingMenuForm.menuPlaceholder',
       });
 
+      const menuDescriptionPlaceholderMessage = intl.formatMessage({
+        id: 'EditListingMenuFormDescription.menuPlaceholder',
+      });
       const menu2LabelMessage = intl.formatMessage({
         id: 'EditListingMenuForm.menu2Label',
       });
@@ -111,7 +114,7 @@ export const EditListingMenuFormComponent = props => (
                       type="textarea"
                       name={`${name}.description`}
                       component="input"
-                      placeholder="Last Name"
+                      placeholder={menuDescriptionPlaceholderMessage}
                     />
                     <span
                       onClick={() => fields.remove(index)}
