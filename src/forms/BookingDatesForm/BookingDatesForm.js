@@ -9,9 +9,13 @@ import { FormattedMessage, intlShape, injectIntl } from '../../util/reactIntl';
 import { required, bookingDatesRequired, composeValidators } from '../../util/validators';
 import { START_DATE, END_DATE } from '../../util/dates';
 import { propTypes } from '../../util/types';
-import { Form, IconSpinner, PrimaryButton, FieldDateRangeInput } from '../../components';
+import { Form, IconSpinner, PrimaryButton, FieldDateRangeInput, FieldTextInput } from '../../components';
 import EstimatedBreakdownMaybe from './EstimatedBreakdownMaybe';
-
+import {
+  autocompleteSearchRequired,
+  autocompletePlaceSelected,
+} from '../../util/validators';
+import {LocationAutocompleteInputField} from '../../components';
 import css from './BookingDatesForm.module.css';
 
 const identity = v => v;
@@ -123,12 +127,46 @@ export class BookingDatesFormComponent extends Component {
           const requiredMessage = intl.formatMessage({
             id: 'BookingDatesForm.requiredDate',
           });
+          
+          const bookingDatesBudgetLabel = intl.formatMessage({
+            id: 'BookingDatesBudgetLabel.Budget',
+          });
+          
+          const bookingDatesBudgetPlaceholderMessage = intl.formatMessage({
+            id: 'BookingDatesBudgetPlaceholder.Budget',
+          });
+
+          const bookingDatesPersonsLabel = intl.formatMessage({
+            id: 'BookingDatesPersonsLabel.Persons',
+          });
+          
+          const bookingDatesPersonsPlaceholderMessage = intl.formatMessage({
+            id: 'BookingDatesPersonsPlaceholder.Persons',
+          });
+
           const startDateErrorMessage = intl.formatMessage({
             id: 'FieldDateRangeInput.invalidStartDate',
           });
           const endDateErrorMessage = intl.formatMessage({
             id: 'FieldDateRangeInput.invalidEndDate',
           });
+
+
+          const titleRequiredMessage = intl.formatMessage({ id: 'EditListingLocationForm.address' });
+          const addressPlaceholderMessage = intl.formatMessage({
+            id: 'EditListingLocationForm.addressPlaceholder',
+          });
+          const addressRequiredMessage = intl.formatMessage({
+            id: 'EditListingLocationForm.addressRequired',
+          });
+          const addressNotRecognizedMessage = intl.formatMessage({
+            id: 'EditListingLocationForm.addressNotRecognized',
+          });
+    
+          const optionalText = intl.formatMessage({
+            id: 'EditListingLocationForm.optionalText',
+          });
+
           const timeSlotsError = fetchTimeSlotsError ? (
             <p className={css.sideBarError}>
               <FormattedMessage id="BookingDatesForm.timeSlotsError" />
@@ -197,10 +235,11 @@ export class BookingDatesFormComponent extends Component {
               <FormSpy
                 subscription={{ values: true }}
                 onChange={values => {
-                  this.handleOnChange(values);
+                  //this.handleOnChange(values);
                 }}
               />
               <FieldDateRangeInput
+              
                 className={css.bookingDates}
                 name="bookingDates"
                 unitType={unitType}
@@ -220,12 +259,53 @@ export class BookingDatesFormComponent extends Component {
                   bookingDatesRequired(startDateErrorMessage, endDateErrorMessage)
                 )}
                 disabled={fetchLineItemsInProgress}
+
               />
 
               {bookingInfoMaybe}
               {loadingSpinnerMaybe}
               {bookingInfoErrorMaybe}
+              
 
+              <FieldTextInput
+              className={css.bookingDatesBudget}
+              name="bookingDatesBudget"
+              type="text"
+              id="bookingDatesBudget"
+              label={bookingDatesBudgetLabel}
+              placeholder={bookingDatesBudgetPlaceholderMessage}
+              />
+
+
+              <FieldTextInput
+              className={css.bookingDatesBudget}
+              name="bookingDatesPersons"
+              type="text"
+              id="bookingDatesPersons"
+              label={bookingDatesPersonsLabel}
+              placeholder={bookingDatesPersonsPlaceholderMessage}
+              />
+
+            <LocationAutocompleteInputField
+            className={css.locationAddress}
+            inputClassName={css.locationAutocompleteInput}
+            iconClassName={css.locationAutocompleteInputIcon}
+            predictionsClassName={css.predictionsRoot}
+            validClassName={css.validLocation}
+            autoFocus
+            name="location"
+            label={titleRequiredMessage}
+            placeholder={addressPlaceholderMessage}
+            useDefaultPredictions={false}
+            format={identity}
+            valueFromForm={values.location}
+            validate={composeValidators(
+              autocompleteSearchRequired(addressRequiredMessage),
+              autocompletePlaceSelected(addressNotRecognizedMessage)
+            )}
+            />
+
+             
               <p className={css.smallPrint}>
                 <FormattedMessage
                   id={
@@ -235,6 +315,9 @@ export class BookingDatesFormComponent extends Component {
                   }
                 />
               </p>
+
+
+
               <div className={submitButtonClasses}>
                 <PrimaryButton type="submit">
                   <FormattedMessage id="BookingDatesForm.requestToBook" />

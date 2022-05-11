@@ -1073,7 +1073,13 @@
     "EditListingMenuForm.menu2Placeholder": ".feks lidt af det hele",
     "EditListingMenuForm.menu3Placeholder": ".feks lidt af det hele",
 
-    "ListingPage.menuTitle": "Menu"
+    "ListingPage.menuTitle": "Menu",
+
+    "BookingDatesBudgetLabel.Budget": "Jeres budget",
+    "BookingDatesBudgetPlaceholder.Budget": "F.eks. 3000",
+    "BookingDatesPersonsLabel.Persons": "Antal personer",
+    "BookingDatesPersonsPlaceholder.Persons": "F.eks. ca. 30"
+
 
 
 }
