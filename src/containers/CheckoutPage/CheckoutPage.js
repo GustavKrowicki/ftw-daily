@@ -1,3 +1,4 @@
+<script src="http://localhost:8097"></script>
 import React, { Component } from 'react';
 import { bool, func, instanceOf, object, shape, string } from 'prop-types';
 import { compose } from 'redux';
@@ -52,6 +53,7 @@ import config from '../../config';
 
 import { storeData, storedData, clearData } from './CheckoutPageSessionHelpers';
 import css from './CheckoutPage.module.css';
+import { times } from 'lodash';
 
 const STORAGE_KEY = 'CheckoutPage';
 
@@ -271,18 +273,53 @@ export class CheckoutPageComponent extends Component {
       return <NamedRedirect name="ListingPage" params={params} />;
     }
 
+    const bookingDatoer = bookingDates.startDate;
+
     const listingTitle = currentListing.attributes.title;
     const title = intl.formatMessage(
       { id: 'CheckoutPage.title' },
       { listingTitle }
     );
 
-  
+
+      const bookingstart1 = {
+       bookingdates: [
+          {bookingStarting: 'this.state.pageData.bookingDates.bookingStart'}
+        ]
+      }
+
+
+
+
+    const bookingend = this.state.pageData.bookingDates;
+    const timeend = intl.formatMessage(
+      { id: 'checkoutPage.time' },
+      { bookingend }
+    );
+
+    const bookingLocation = this.state.pageData.bookingData.location.selectedPlace.address;
+    const bookingAddress = intl.formatMessage(
+      { id: 'checkoutPage.Location' },
+      { bookingLocation }
+    );
+    
+    const bookingPerson = this.state.pageData.bookingData.bookingDatesPersons;
+    const bookingPersons = intl.formatMessage(
+      { id: 'checkoutPage.Persons' },
+      { bookingPerson }
+    );
+    const bookingBudget = this.state.pageData.bookingData.bookingDatesBudget;
+    const bookingBudgetPL = intl.formatMessage(
+      { id: 'checkoutPage.Budget' },
+      { bookingBudget }
+    );
     
     const firstImage =
       currentListing.images && currentListing.images.length > 0
         ? currentListing.images[0]
         : null;
+
+
 
     const listingNotFoundErrorMessage = listingNotFound ? (
       <p className={css.notFoundError}>
@@ -418,6 +455,9 @@ export class CheckoutPageComponent extends Component {
       id: unitTranslationKey,
     })}`;
 
+
+
+
     const showInitialMessageInput = !enquiredTransaction;
 
     const pageProps = { title, scrollingDisabled };
@@ -437,6 +477,9 @@ export class CheckoutPageComponent extends Component {
       { id: 'StripePaymentForm.messagePlaceholder' },
       { name: authorDisplayName }
     );
+
+
+
 
     const messageOptionalText = intl.formatMessage({
       id: 'StripePaymentForm.messageOptionalText',
@@ -508,12 +551,14 @@ export class CheckoutPageComponent extends Component {
           <div className={css.bookListingContainer}>
             <div className={css.heading}>
               <h1 className={css.title}>{title}</h1>
+             
               <div className={css.author}>
                 <FormattedMessage
                   id="CheckoutPage.hostedBy"
                   values={{ name: authorDisplayName }}
                 />
               </div>
+           
             </div>
 
             <section className={css.paymentContainer}>
@@ -538,8 +583,14 @@ export class CheckoutPageComponent extends Component {
             </div>
             <div className={css.detailsHeadings}>
               <h2 className={css.detailsTitle}>{listingTitle}</h2>
-            </div>
              
+              <p className={css.detailsTitle}>{timeend}</p>
+              <p className={css.detailsTitle}>{bookingAddress}</p>
+              <p className={css.detailsTitle}>{bookingPersons}</p>
+              <p className={css.detailsTitle}>{bookingBudgetPL}</p>
+                        </div>
+           
+            
             {speculateTransactionErrorMessage}
           </div>
         </div>
