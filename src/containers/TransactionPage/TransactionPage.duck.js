@@ -98,7 +98,8 @@ const initialState = {
   lineItems: null,
   fetchLineItemsInProgress: false,
   fetchLineItemsError: null,
-};
+  bookingData: null,
+}; 
 
 // Merge entity arrays using ids, so that conflicting items in newer array (b) overwrite old values (a).
 // const a = [{ id: { uuid: 1 } }, { id: { uuid: 3 } }];

@@ -6,7 +6,7 @@ import { arrayOf, array, bool, func, node, oneOfType, shape, string } from 'prop
 import classNames from 'classnames';
 import omit from 'lodash/omit';
 import { propTypes, LISTING_STATE_CLOSED, LINE_ITEM_NIGHT, LINE_ITEM_DAY } from '../../util/types';
-import { formatMoney } from '../../util/currency';
+//import { formatMoney } from '../../util/currency';
 import { parse, stringify } from '../../util/urlHelpers';
 import config from '../../config';
 import { ModalInMobile, Button } from '../../components';
@@ -17,18 +17,7 @@ import css from './BookingPanel.module.css';
 // This defines when ModalInMobile shows content as Modal
 const MODAL_BREAKPOINT = 1023;
 
-const priceData = (price, intl) => {
-  if (price && price.currency === config.currency) {
-    const formattedPrice = formatMoney(intl, price);
-    return { formattedPrice, priceTitle: formattedPrice };
-  } else if (price) {
-    return {
-      formattedPrice: `(${price.currency})`,
-      priceTitle: `Unsupported currency (${price.currency})`,
-    };
-  }
-  return {};
-};
+
 
 const openBookModal = (isOwnListing, isClosed, history, location) => {
   if (isOwnListing || isClosed) {
@@ -71,12 +60,12 @@ const BookingPanel = props => {
     fetchLineItemsError,
   } = props;
 
-  const price = listing.attributes.price;
+ 
   const hasListingState = !!listing.attributes.state;
   const isClosed = hasListingState && listing.attributes.state === LISTING_STATE_CLOSED;
   const showBookingDatesForm = hasListingState && !isClosed;
   const showClosedListingHelpText = listing.id && isClosed;
-  const { formattedPrice, priceTitle } = priceData(price, intl);
+
   const isBook = !!parse(location.search).book;
 
   const subTitleText = !!subTitle
@@ -125,7 +114,7 @@ const BookingPanel = props => {
             submitButtonWrapperClassName={css.bookingDatesSubmitButtonWrapper}
             unitType={unitType}
             onSubmit={onSubmit}
-            price={price}
+       
             listingId={listing.id}
             isOwnListing={isOwnListing}
             timeSlots={timeSlots}
@@ -139,9 +128,7 @@ const BookingPanel = props => {
       </ModalInMobile>
       <div className={css.openBookingForm}>
         <div className={css.priceContainer}>
-          <div className={css.priceValue} title={priceTitle}>
-            {formattedPrice}
-          </div>
+       
           <div className={css.perUnit}>
             <FormattedMessage id={unitTranslationKey} />
           </div>

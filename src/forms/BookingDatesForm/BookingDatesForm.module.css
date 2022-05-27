@@ -11,6 +11,7 @@
 
   /* Ensure that calendar dropdown gets some stacking context relative to other form items below */
   z-index: 1;
+  color: var(--matterColorAnti);
 }
 
 .priceBreakdownContainer {
@@ -24,9 +25,14 @@
   }
 }
 
+.bookingDatesBudget {
+  color: var(--matterColorAnti);
+}
+
+
 .priceBreakdownTitle {
   /* Font */
-  color: var(--matterColorAnti);
+  color: var(--inputColorLight);
 
   margin-top: 5px;
   margin-bottom: 14px;
@@ -63,7 +69,7 @@
 
 .smallPrint {
   @apply --marketplaceTinyFontStyles;
-  color: var(--matterColorAnti);
+  color: var(--inputColorLight);
   text-align: center;
   margin: auto 24px 20px 24px;
   flex-shrink: 0;

@@ -58,18 +58,7 @@ const MIN_LENGTH_FOR_LONG_WORDS_IN_TITLE = 16;
 
 const { UUID } = sdkTypes;
 
-const priceData = (price, intl) => {
-  if (price && price.currency === config.currency) {
-    const formattedPrice = formatMoney(intl, price);
-    return { formattedPrice, priceTitle: formattedPrice };
-  } else if (price) {
-    return {
-      formattedPrice: `(${price.currency})`,
-      priceTitle: `Unsupported currency (${price.currency})`,
-    };
-  }
-  return {};
-};
+
 
 const categoryLabel = (categories, key) => {
   const cat = categories.find(c => c.key === key);
@@ -238,7 +227,6 @@ export class ListingPageComponent extends Component {
     const {
       description = '',
       geolocation = null,
-      price = null,
       title = '',
       publicData,
     } = currentListing.attributes;
@@ -331,7 +319,6 @@ export class ListingPageComponent extends Component {
     // banned or deleted display names for the function
     const authorDisplayName = userDisplayNameAsString(ensuredAuthor, '');
 
-    const { formattedPrice, priceTitle } = priceData(price, intl);
 
     const handleBookingSubmit = values => {
       const isCurrentlyClosed = currentListing.attributes.state === LISTING_STATE_CLOSED;
@@ -363,7 +350,7 @@ export class ListingPageComponent extends Component {
     const siteTitle = config.siteTitle;
     const schemaTitle = intl.formatMessage(
       { id: 'ListingPage.schemaTitle' },
-      { title, price: formattedPrice, siteTitle }
+      {siteTitle }
     );
 
     const hostLink = (
@@ -427,8 +414,6 @@ export class ListingPageComponent extends Component {
                 <SectionAvatar user={currentAuthor} params={params} />
                 <div className={css.mainContent}>
                   <SectionHeading
-                    priceTitle={priceTitle}
-                    formattedPrice={formattedPrice}
                     richTitle={richTitle}
                     category={category}
                     hostLink={hostLink}

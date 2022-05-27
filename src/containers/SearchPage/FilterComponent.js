@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   BookingDateRangeFilter,
-  PriceFilter,
   KeywordFilter,
   SelectSingleFilter,
   SelectMultipleFilter,
@@ -69,19 +68,7 @@ const FilterComponent = props => {
         />
       );
     }
-    case 'PriceFilter': {
-      return (
-        <PriceFilter
-          id={componentId}
-          label={label}
-          queryParamNames={queryParamNames}
-          initialValues={initialValues(queryParamNames)}
-          onSubmit={getHandleChangedValueFn(useHistoryPush)}
-          {...config}
-          {...rest}
-        />
-      );
-    }
+  
     case 'KeywordFilter':
       return (
         <KeywordFilter

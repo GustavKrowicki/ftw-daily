@@ -161,9 +161,9 @@ const priceLabelsInLocations = (
 
       const key = listing.id.uuid;
       return {
-        markerId: `price_${key}`,
+        markerId: `location_${key}`,
         location: geolocation,
-        type: 'price',
+        type: 'location',
         componentProps: {
           key,
           isActive,
@@ -470,7 +470,7 @@ class SearchMapWithMapbox extends Component {
             : null;
 
           // Create component portals for correct marker containers
-          if (isMapReadyForMarkers && m.type === 'price') {
+          if (isMapReadyForMarkers && m.type === 'location') {
             return ReactDOM.createPortal(
               <SearchMapPriceLabel {...m.componentProps} />,
               portalDOMContainer

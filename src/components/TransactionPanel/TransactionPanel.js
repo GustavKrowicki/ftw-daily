@@ -287,6 +287,12 @@ export class TransactionPanelComponent extends Component {
       ? deletedListingTitle
       : currentListing.attributes.title;
 
+    const bookingPlace = currentTransaction.bookingData;
+    const bookingAddress = intl.formatMessage(
+      { id: 'checkoutPage.Location' },
+      { bookingPlace }
+    );
+
     const unitType = config.bookingUnitType;
     const isNightly = unitType === LINE_ITEM_NIGHT;
     const isDaily = unitType === LINE_ITEM_DAY;
@@ -297,10 +303,7 @@ export class TransactionPanelComponent extends Component {
       ? 'TransactionPanel.perDay'
       : 'TransactionPanel.perUnit';
 
-    const price = currentListing.attributes.price;
-    const bookingSubTitle = price
-      ? `${formatMoney(intl, price)} ${intl.formatMessage({ id: unitTranslationKey })}`
-      : '';
+ 
 
     const firstImage =
       currentListing.images && currentListing.images.length > 0 ? currentListing.images[0] : null;
@@ -423,6 +426,7 @@ export class TransactionPanelComponent extends Component {
                 avatarWrapperClassName={css.avatarWrapperDesktop}
                 listingTitle={listingTitle}
                 image={firstImage}
+                bookingLocation={bookingAddress}
                 provider={currentProvider}
                 isCustomer={isCustomer}
               />
@@ -430,7 +434,9 @@ export class TransactionPanelComponent extends Component {
               <DetailCardHeadingsMaybe
                 showDetailCardHeadings={stateData.showDetailCardHeadings}
                 listingTitle={listingTitle}
-                subTitle={bookingSubTitle}
+                
+                bookingLocation={bookingAddress}
+
                 location={location}
                 geolocation={geolocation}
                 showAddress={stateData.showAddress}
@@ -458,6 +464,7 @@ export class TransactionPanelComponent extends Component {
                 className={css.breakdownContainer}
                 transaction={currentTransaction}
                 transactionRole={transactionRole}
+                bookingLocation={bookingAddress}
               />
 
               {stateData.showSaleButtons ? (

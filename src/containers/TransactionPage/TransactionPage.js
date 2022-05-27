@@ -8,7 +8,7 @@ import { FormattedMessage, intlShape, injectIntl } from '../../util/reactIntl';
 import { createResourceLocatorString, findRouteByRouteName } from '../../util/routes';
 import routeConfiguration from '../../routeConfiguration';
 import { propTypes } from '../../util/types';
-import { ensureListing, ensureTransaction } from '../../util/data';
+import { ensureListing, ensureTransaction, ensureBooking } from '../../util/data';
 import { dateFromAPIToLocalNoon } from '../../util/dates';
 import { createSlug } from '../../util/urlHelpers';
 import { txIsPaymentPending } from '../../util/transaction';
@@ -81,9 +81,11 @@ export const TransactionPageComponent = props => {
     lineItems,
     fetchLineItemsInProgress,
     fetchLineItemsError,
+    bookingData,
   } = props;
-
+  
   const currentTransaction = ensureTransaction(transaction);
+  const currentBooking = ensureBooking(currentTransaction.booking);
   const currentListing = ensureListing(currentTransaction.listing);
   const isProviderRole = transactionRole === PROVIDER;
   const isCustomerRole = transactionRole === CUSTOMER;
@@ -159,6 +161,23 @@ export const TransactionPageComponent = props => {
     ? deletedListingTitle
     : currentListing.attributes.title;
 
+  //const TransactionStart = transaction.booking.attributes.start;
+
+
+  console.log({bookingData})
+  console.log({currentTransaction})
+  console.log({currentBooking})
+ 
+/*
+  
+      const TransactionPageStart = currentBooking.attributes.end;
+    const bookingStarting = intl.formatMessage(
+      { id: 'TransactionPage.Starting' },
+      { TransactionPageStart }
+    );
+    
+*/
+    //console.log({TransactionPageStart})
   // Redirect users with someone else's direct link to their own inbox/sales or inbox/orders page.
   const isDataAvailable =
     currentUser &&
@@ -166,6 +185,7 @@ export const TransactionPageComponent = props => {
     currentTransaction.id.uuid === params.id &&
     currentTransaction.attributes.lineItems &&
     currentTransaction.customer &&
+    currentTransaction.booking &&
     currentTransaction.provider &&
     !fetchTransactionError;
 
@@ -219,9 +239,10 @@ export const TransactionPageComponent = props => {
     <TransactionPanel
       className={detailsClassName}
       currentUser={currentUser}
-      transaction={currentTransaction}
+      transaction={currentTransaction} 
+      booking={currentBooking}
       fetchMessagesInProgress={fetchMessagesInProgress}
-      totalMessagePages={totalMessagePages}
+      totalMessagePages={totalMessagePages} 
       oldestMessagePageFetched={oldestMessagePageFetched}
       messages={messages}
       initialMessageFailed={initialMessageFailed}
@@ -265,6 +286,8 @@ export const TransactionPageComponent = props => {
           <TopbarContainer />
         </LayoutWrapperTopbar>
         <LayoutWrapperMain>
+
+      
           <div className={css.root}>{panel}</div>
         </LayoutWrapperMain>
         <LayoutWrapperFooter className={css.footer}>
@@ -364,6 +387,7 @@ const mapStateToProps = state => {
     lineItems,
     fetchLineItemsInProgress,
     fetchLineItemsError,
+    bookingData,
   } = state.TransactionPage;
   const { currentUser } = state.user;
 
@@ -396,6 +420,7 @@ const mapStateToProps = state => {
     lineItems,
     fetchLineItemsInProgress,
     fetchLineItemsError,
+    bookingData,
   };
 };
 

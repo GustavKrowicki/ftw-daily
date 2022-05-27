@@ -72,32 +72,13 @@ export class BookingDatesFormComponent extends Component {
   }
 
   render() {
-    const { rootClassName, className, price: unitPrice, ...rest } = this.props;
+    const { rootClassName, className,  ...rest } = this.props;
     const classes = classNames(rootClassName || css.root, className);
-
-    if (!unitPrice) {
-      return (
-        <div className={classes}>
-          <p className={css.error}>
-            <FormattedMessage id="BookingDatesForm.listingPriceMissing" />
-          </p>
-        </div>
-      );
-    }
-    if (unitPrice.currency !== config.currency) {
-      return (
-        <div className={classes}>
-          <p className={css.error}>
-            <FormattedMessage id="BookingDatesForm.listingCurrencyInvalid" />
-          </p>
-        </div>
-      );
-    }
 
     return (
       <FinalForm
         {...rest}
-        unitPrice={unitPrice}
+       
         onSubmit={this.handleFormSubmit}
         render={fieldRenderProps => {
           const {
@@ -152,9 +133,9 @@ export class BookingDatesFormComponent extends Component {
           });
 
 
-          const titleRequiredMessage = intl.formatMessage({ id: 'EditListingLocationForm.address' });
+          const titleRequiredMessage = intl.formatMessage({ id: 'EditListingLocationForm.address.booking' });
           const addressPlaceholderMessage = intl.formatMessage({
-            id: 'EditListingLocationForm.addressPlaceholder',
+            id: 'EditListingLocationForm.addressPlaceholder.booking',
           });
           const addressRequiredMessage = intl.formatMessage({
             id: 'EditListingLocationForm.addressRequired',
@@ -335,7 +316,7 @@ BookingDatesFormComponent.defaultProps = {
   rootClassName: null,
   className: null,
   submitButtonWrapperClassName: null,
-  price: null,
+
   isOwnListing: false,
   startDatePlaceholder: null,
   endDatePlaceholder: null,
@@ -350,7 +331,7 @@ BookingDatesFormComponent.propTypes = {
   submitButtonWrapperClassName: string,
 
   unitType: propTypes.bookingUnitType.isRequired,
-  price: propTypes.money,
+ 
   isOwnListing: bool,
   timeSlots: arrayOf(propTypes.timeSlot),
 

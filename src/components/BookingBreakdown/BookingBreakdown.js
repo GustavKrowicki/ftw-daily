@@ -89,48 +89,12 @@ export const BookingBreakdownComponent = props => {
   return (
     <div className={classes}>
       <LineItemBookingPeriod booking={booking} unitType={unitType} dateType={dateType} />
-      <LineItemUnitsMaybe transaction={transaction} unitType={unitType} />
+      
 
-      <LineItemBasePriceMaybe transaction={transaction} unitType={unitType} intl={intl} />
-      <LineItemUnknownItemsMaybe transaction={transaction} isProvider={isProvider} intl={intl} />
+    
 
-      <LineItemSubTotalMaybe
-        transaction={transaction}
-        unitType={unitType}
-        userRole={userRole}
-        intl={intl}
-      />
-      <LineItemRefundMaybe transaction={transaction} intl={intl} />
 
-      <LineItemCustomerCommissionMaybe
-        transaction={transaction}
-        isCustomer={isCustomer}
-        intl={intl}
-      />
-      <LineItemCustomerCommissionRefundMaybe
-        transaction={transaction}
-        isCustomer={isCustomer}
-        intl={intl}
-      />
-
-      <LineItemProviderCommissionMaybe
-        transaction={transaction}
-        isProvider={isProvider}
-        intl={intl}
-      />
-      <LineItemProviderCommissionRefundMaybe
-        transaction={transaction}
-        isProvider={isProvider}
-        intl={intl}
-      />
-
-      <LineItemTotalPrice transaction={transaction} isProvider={isProvider} intl={intl} />
-
-      {hasCommissionLineItem ? (
-        <span className={css.feeInfo}>
-          <FormattedMessage id="BookingBreakdown.commissionFeeNote" />
-        </span>
-      ) : null}
+    
     </div>
   );
 };

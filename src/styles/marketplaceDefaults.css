@@ -33,6 +33,7 @@
   --attentionColorLight: #fff7f0;
   --bannedColorLight: var(--marketplaceColorLight);
   --bannedColorDark: var(--marketplaceColor);
+  --inputColorLight: #a0a0a0;
 
   --matterColorDark: #000000;
   --matterColor: #4a4a4a;

@@ -122,6 +122,7 @@ export class CheckoutPageComponent extends Component {
       );
     }
 
+
     // NOTE: stored data can be empty if user has already successfully completed transaction.
     const pageData = hasDataInProps
       ? { bookingData, bookingDates, listing, enquiredTransaction }
@@ -231,7 +232,7 @@ export class CheckoutPageComponent extends Component {
 
     const isLoading = !this.state.dataLoaded || speculateTransactionInProgress;
 
-    const { listing, bookingDates, enquiredTransaction } = this.state.pageData;
+    const { listing, bookingDates, bookingData, enquiredTransaction } = this.state.pageData;
     const currentTransaction = ensureTransaction(
       speculatedTransaction,
       {},
@@ -291,7 +292,7 @@ export class CheckoutPageComponent extends Component {
 
 
 
-    const bookingend = this.state.pageData.bookingDates;
+    const bookingend = this.state.pageData.bookingDates.bookingEnd;
     const timeend = intl.formatMessage(
       { id: 'checkoutPage.time' },
       { bookingend }
@@ -303,6 +304,7 @@ export class CheckoutPageComponent extends Component {
       { bookingLocation }
     );
     
+
     const bookingPerson = this.state.pageData.bookingData.bookingDatesPersons;
     const bookingPersons = intl.formatMessage(
       { id: 'checkoutPage.Persons' },
@@ -313,6 +315,9 @@ export class CheckoutPageComponent extends Component {
       { id: 'checkoutPage.Budget' },
       { bookingBudget }
     );
+    
+     
+    console.log({bookingend})
     
     const firstImage =
       currentListing.images && currentListing.images.length > 0
@@ -553,12 +558,18 @@ export class CheckoutPageComponent extends Component {
               <h1 className={css.title}>{title}</h1>
              
               <div className={css.author}>
+
+                
                 <FormattedMessage
                   id="CheckoutPage.hostedBy"
                   values={{ name: authorDisplayName }}
                 />
               </div>
-           
+              <p className={css.detailsTitle}>{timeend}</p>
+              <p className={css.detailsTitle}>{bookingAddress}</p>
+              <p className={css.detailsTitle}>{bookingPersons}</p>
+              <p className={css.detailsTitle}>{bookingBudgetPL}</p>
+          
             </div>
 
             <section className={css.paymentContainer}>
@@ -566,6 +577,8 @@ export class CheckoutPageComponent extends Component {
               {listingNotFoundErrorMessage}
               {speculateErrorMessage}
               {bookingForm}
+
+              
             </section>
           </div>
 
@@ -584,10 +597,7 @@ export class CheckoutPageComponent extends Component {
             <div className={css.detailsHeadings}>
               <h2 className={css.detailsTitle}>{listingTitle}</h2>
              
-              <p className={css.detailsTitle}>{timeend}</p>
-              <p className={css.detailsTitle}>{bookingAddress}</p>
-              <p className={css.detailsTitle}>{bookingPersons}</p>
-              <p className={css.detailsTitle}>{bookingBudgetPL}</p>
+            
                         </div>
            
             

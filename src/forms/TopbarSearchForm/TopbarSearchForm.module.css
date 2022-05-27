@@ -82,7 +82,7 @@
 
   &:hover::placeholder,
   &:focus::placeholder {
-    color: var(--matterColor);
+    color: var(--inputColorLight);
   }
 
   /* Placeholder text might be too wide */
