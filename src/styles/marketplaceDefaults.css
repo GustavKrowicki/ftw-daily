@@ -24,12 +24,12 @@
   /* Used with inline CSS SVGs */
   --marketplaceColorEncoded: %23c0392b;
 
-  --successColor: #cf8c06;
+  --successColor: #fc7230;
   --successColorDark: #239954;
   --successColorLight: #f0fff6;
   --failColor: #db0303;
   --failColorLight: #fff0f0;
-  --attentionColor: #cf8c06;
+  --attentionColor: #fc7230;
   --attentionColorLight: #fff7f0;
   --bannedColorLight: var(--marketplaceColorLight);
   --bannedColorDark: var(--marketplaceColor);
