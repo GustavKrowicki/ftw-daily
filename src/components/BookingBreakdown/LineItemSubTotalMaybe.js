@@ -2,7 +2,7 @@ import React from 'react';
 import { string } from 'prop-types';
 import { FormattedMessage, intlShape } from '../../util/reactIntl';
 import Decimal from 'decimal.js';
-import { formatMoney } from '../../util/currency';
+//import { formatMoney } from '../../util/currency';
 import config from '../../config';
 import { types as sdkTypes } from '../../util/sdkLoader';
 import {

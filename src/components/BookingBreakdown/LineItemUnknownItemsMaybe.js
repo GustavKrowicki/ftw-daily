@@ -11,7 +11,7 @@
  */
 import React from 'react';
 import { intlShape } from '../../util/reactIntl';
-import { formatMoney } from '../../util/currency';
+//import { formatMoney } from '../../util/currency';
 import { humanizeLineItemCode } from '../../util/data';
 import { LINE_ITEMS, propTypes } from '../../util/types';
 

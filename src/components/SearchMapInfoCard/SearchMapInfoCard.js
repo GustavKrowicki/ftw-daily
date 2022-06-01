@@ -5,7 +5,7 @@ import { injectIntl, intlShape } from '../../util/reactIntl';
 import classNames from 'classnames';
 import config from '../../config';
 import { propTypes } from '../../util/types';
-import { formatMoney } from '../../util/currency';
+//import { formatMoney } from '../../util/currency';
 import { ensureListing } from '../../util/data';
 import { ResponsiveImage } from '../../components';
 

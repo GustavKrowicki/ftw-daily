@@ -26,7 +26,7 @@ import {
   isTransactionChargeDisabledError,
   isTransactionZeroPaymentError,
 } from '../../util/errors';
-import { formatMoney } from '../../util/currency';
+//import { formatMoney } from '../../util/currency';
 import {
   AvatarMedium,
   Button,
@@ -172,6 +172,7 @@ export class CheckoutPageComponent extends Component {
     // Create order aka transaction
     // NOTE: if unit type is line-item/units, quantity needs to be added.
     // The way to pass it to checkout page is through pageData.bookingData
+    
     const requestParams = {
       listingId: this.state.pageData.listing.id,
       bookingStart: speculatedTransaction.booking.attributes.start,
@@ -453,14 +454,14 @@ export class CheckoutPageComponent extends Component {
       : isDaily
       ? 'CheckoutPage.perDay'
       : 'CheckoutPage.perUnit';
-
+/*
     const price = currentListing.attributes.price;
     const formattedPrice = formatMoney(intl, price);
     const detailsSubTitle = `${formattedPrice} ${intl.formatMessage({
       id: unitTranslationKey,
     })}`;
 
-
+*/
 
 
     const showInitialMessageInput = !enquiredTransaction;

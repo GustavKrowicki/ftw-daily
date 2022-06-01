@@ -1,3 +1,4 @@
+
 import has from 'lodash/has';
 import trimEnd from 'lodash/trimEnd';
 import Decimal from 'decimal.js';
@@ -242,6 +243,7 @@ export const convertMoneyToNumber = value => {
  *
  * @return {String} formatted money value
  */
+/*
 export const formatMoney = (intl, value) => {
   if (!(value instanceof Money)) {
     throw new Error('Value must be a Money type');

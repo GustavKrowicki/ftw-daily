@@ -1,16 +1,13 @@
 const { calculateQuantityFromDates, calculateTotalFromLineItems } = require('./lineItemHelpers');
 const { types } = require('sharetribe-flex-sdk');
-const { Money } = types;
+
 
 // This bookingUnitType needs to be one of the following:
 // line-item/night, line-item/day or line-item/units
 const bookingUnitType = 'line-item/day';
-const FIXED_CUSTOMER_COMMISSION = 5000;
 
 
-const calculateCommission = (unitPrice, amount) => {
-  return new Money(amount, unitPrice.currency);
-};
+
 
 /** Returns collection of lineItems (max 50)
  *
@@ -33,7 +30,6 @@ const calculateCommission = (unitPrice, amount) => {
  * @returns {Array} lineItems
  */
 exports.transactionLineItems = (listing, bookingData) => {
-  const unitPrice = listing.attributes.price;
   const { startDate, endDate } = bookingData;
 
   /**
@@ -48,19 +44,13 @@ exports.transactionLineItems = (listing, bookingData) => {
 
   const booking = {
     code: bookingUnitType,
-    unitPrice,
     quantity: calculateQuantityFromDates(startDate, endDate, bookingUnitType),
     includeFor: ['customer', 'provider'],
   };
 
-  const customerCommission = {
-    code: 'line-item/customer-commission',
-    unitPrice: calculateCommission(unitPrice, FIXED_CUSTOMER_COMMISSION),
-    quantity: 1,
-    includeFor: ['customer'],
-  };
+ 
 
-  const lineItems = [booking, customerCommission];
+  const lineItems = [booking];
 
   return lineItems;
 };
