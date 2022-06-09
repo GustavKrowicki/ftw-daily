@@ -411,6 +411,34 @@
   }
 }
 
+.sectionMenu{
+  padding: 0 24px;
+  margin-bottom: 35px;
+
+  @media (--viewportMedium) {
+    padding: 0;
+    margin-bottom: 36px;
+  }
+}
+
+.innerdiv{
+  margin-top: 20px;
+  border-top: 1px solid black;
+  }
+  
+.MenuTitle{
+    /* Font */
+    @apply --marketplaceH3FontStyles;
+    color: var(--matterColorAnti);
+  
+    margin-top: 0;
+    margin-bottom: 13px;
+    @media (--viewportMedium) {
+      margin-top: 0;
+      margin-bottom: 12px;
+    }
+}
+
 .sectionFeatures {
   padding: 0 24px;
   margin-bottom: 32px;

@@ -3,7 +3,8 @@ import { shape, string } from 'prop-types';
 import { FormattedMessage } from '../../util/reactIntl';
 import classNames from 'classnames';
 import pizza1 from './margherita_buffalo.jpeg';
-import css from './SectionMenu.module.css';
+
+import css from './ListingPage.module.css';
 
 const SectionMenu = props => {
   const { className, rootClassName, publicData } = props;
@@ -13,8 +14,8 @@ const SectionMenu = props => {
   const hasCustomers = customers?.length > 0;
   
   return hasCustomers ? (
-    <div>
-      <h2 className={css.featuresTitle}>
+    <div className={css.sectionMenu}>
+      <h2 className={css.MenuTitle}>
         <FormattedMessage id="ListingPage.menuTitle" />
       </h2>
       {customers.map((c) => {
