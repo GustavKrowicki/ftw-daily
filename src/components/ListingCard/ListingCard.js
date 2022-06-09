@@ -65,12 +65,7 @@ export const ListingCardComponent = props => {
         </div>
       </div>
       <div className={css.info}>
-        <div className={css.price}>
-          
-          <div className={css.perUnit}>
-            <FormattedMessage id={unitTranslationKey} />
-          </div>
-        </div>
+     
         <div className={css.mainInfo}>
           <div className={css.title}>
             {richText(title, {

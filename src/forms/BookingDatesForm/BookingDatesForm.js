@@ -268,8 +268,7 @@ export class BookingDatesFormComponent extends Component {
               />
 
             <LocationAutocompleteInputField
-            className={css.locationAddress}
-            inputClassName={css.locationAutocompleteInput}
+            className={css.bookingDatesBudget}
             iconClassName={css.locationAutocompleteInputIcon}
             predictionsClassName={css.predictionsRoot}
             validClassName={css.validLocation}
@@ -292,7 +291,7 @@ export class BookingDatesFormComponent extends Component {
                   id={
                     isOwnListing
                       ? 'BookingDatesForm.ownListing'
-                      : 'BookingDatesForm.youWontBeChargedInfo'
+                      : ' '
                   }
                 />
               </p>

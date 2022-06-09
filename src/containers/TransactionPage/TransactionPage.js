@@ -81,9 +81,11 @@ export const TransactionPageComponent = props => {
     lineItems,
     fetchLineItemsInProgress,
     fetchLineItemsError,
-    bookingData,
+    bookingData
   } = props;
   
+
+  const bookingDatas = bookingData
   const currentTransaction = ensureTransaction(transaction);
   const currentBooking = ensureBooking(currentTransaction.booking);
   const currentListing = ensureListing(currentTransaction.listing);
@@ -312,6 +314,7 @@ TransactionPageComponent.defaultProps = {
   fetchTimeSlotsError: null,
   lineItems: null,
   fetchLineItemsError: null,
+  bookingData: null,
 };
 
 const { bool, func, oneOf, shape, string, array, arrayOf, number } = PropTypes;
