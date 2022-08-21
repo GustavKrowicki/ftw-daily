@@ -2,7 +2,7 @@ import React from 'react';
 import { shape, string } from 'prop-types';
 import { FormattedMessage } from '../../util/reactIntl';
 import classNames from 'classnames';
-import pizza1 from './margherita_buffalo.jpeg';
+
 
 import css from './ListingPage.module.css';
 

@@ -81,7 +81,8 @@ export const TransactionPageComponent = props => {
     lineItems,
     fetchLineItemsInProgress,
     fetchLineItemsError,
-    bookingData
+    bookingData, 
+    protectedData
   } = props;
   
 
@@ -89,6 +90,7 @@ export const TransactionPageComponent = props => {
   const currentTransaction = ensureTransaction(transaction);
   const currentBooking = ensureBooking(currentTransaction.booking);
   const currentListing = ensureListing(currentTransaction.listing);
+  const proData = currentBooking.protectedData
   const isProviderRole = transactionRole === PROVIDER;
   const isCustomerRole = transactionRole === CUSTOMER;
 
@@ -96,7 +98,7 @@ export const TransactionPageComponent = props => {
     const routes = routeConfiguration();
     // Customize checkout page state with current listing and selected bookingDates
     const { setInitialValues } = findRouteByRouteName('CheckoutPage', routes);
-    callSetInitialValues(setInitialValues, initialValues);
+    callSetInitialValues(setInitialValues, initialValues, bookingData, protectedData);
 
     // Clear previous Stripe errors from store if there is any
     onInitializeCardPaymentData();
@@ -164,12 +166,47 @@ export const TransactionPageComponent = props => {
     : currentListing.attributes.title;
 
   //const TransactionStart = transaction.booking.attributes.start;
-
-
-  console.log({bookingData})
-  console.log({currentTransaction})
-  console.log({currentBooking})
  
+
+  const bla = currentTransaction.attributes.protectedData
+  console.log({bla}) 
+  /*
+    const bookingBudgetInfo = intl.formatMessage(
+      { id: 'checkoutPage.BudgetInfo' },
+    );
+
+  const budget = currentTransaction.attributes.protectedData.bookingDatesBudget
+   const transactionBudget = intl.formatMessage(
+      { id: 'transactionPage.budget' },
+      {budget}
+    );
+
+ const bookingPersonsInfo = intl.formatMessage(
+      { id: 'checkoutPage.PersonsInfo' },
+
+    );
+
+  const persons = currentTransaction.attributes.protectedData.bookingDatesPersons
+    const transactionPersons = intl.formatMessage(
+      { id: 'transactionPage.persons' },
+      {persons}
+    );
+
+     const bookingAddressInfo = intl.formatMessage(
+      { id: 'checkoutPage.LocationInfo' },
+    );
+
+  const location = currentTransaction.attributes.protectedData.location
+  const transactionLocation = intl.formatMessage(
+      { id: 'transactionPage.location' },
+      {location}
+    );
+*/
+
+
+
+  
+
 /*
   
       const TransactionPageStart = currentBooking.attributes.end;
@@ -439,8 +476,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(sendReview(role, tx, reviewRating, reviewContent)),
     callSetInitialValues: (setInitialValues, values) => dispatch(setInitialValues(values)),
     onInitializeCardPaymentData: () => dispatch(initializeCardPaymentData()),
-    onFetchTransactionLineItems: (bookingData, listingId, isOwnListing) =>
-      dispatch(fetchTransactionLineItems(bookingData, listingId, isOwnListing)),
+    onFetchTransactionLineItems: (bookingData, listingId, bookingDatesBudget, isOwnListing) =>
+      dispatch(fetchTransactionLineItems(bookingData, listingId, bookingDatesBudget, isOwnListing)),
   };
 };
 

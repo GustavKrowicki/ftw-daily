@@ -125,7 +125,7 @@ export class CheckoutPageComponent extends Component {
 
     // NOTE: stored data can be empty if user has already successfully completed transaction.
     const pageData = hasDataInProps
-      ? { bookingData, bookingDates, listing, enquiredTransaction }
+      ? { bookingData, bookingDates, listing, enquiredTransaction}
       : storedData(STORAGE_KEY);
 
     const hasData =
@@ -139,6 +139,7 @@ export class CheckoutPageComponent extends Component {
 
     if (hasData) {
       const listingId = pageData.listing.id;
+      
       const { bookingStart, bookingEnd } = pageData.bookingDates;
 
       // Convert picked date to date that will be converted on the API as
@@ -153,6 +154,7 @@ export class CheckoutPageComponent extends Component {
         listingId,
         bookingStart: bookingStartForAPI,
         bookingEnd: bookingEndForAPI,
+       
       });
     }
 
@@ -167,7 +169,7 @@ export class CheckoutPageComponent extends Component {
     this.setState({ submitting: true });
 
     const initialMessage = values.initialMessage;
-    const { history, speculatedTransaction, dispatch, onInitiateOrder, onSendMessage } = this.props;
+    const { history, speculatedTransaction, dispatch, onInitiateOrder, onSendMessage, bookingData } = this.props;
 
     // Create order aka transaction
     // NOTE: if unit type is line-item/units, quantity needs to be added.
@@ -177,6 +179,13 @@ export class CheckoutPageComponent extends Component {
       listingId: this.state.pageData.listing.id,
       bookingStart: speculatedTransaction.booking.attributes.start,
       bookingEnd: speculatedTransaction.booking.attributes.end,
+     protectedData: {
+      bookingDatesPersons: this.state.pageData.bookingData.bookingDatesPersons,
+      bookingDatesBudget: this.state.pageData.bookingData.bookingDatesBudget, 
+      location: this.state.pageData.bookingData.location.selectedPlace.address,
+    },
+     
+      
     };
 
     const enquiredTransaction = this.state.pageData.enquiredTransaction;
@@ -194,7 +203,7 @@ export class CheckoutPageComponent extends Component {
           // sending failed, we tell it to the OrderDetailsPage.
           dispatch(
             OrderPage.setInitialValues({
-              initialMessageFailedToTransaction: messageSuccess ? null : orderId,
+              initialMessageFailedToTransaction: messageSuccess ? null : orderId, protectedData : this.state.pageData, 
             })
           );
           const orderDetailsPath = pathByRouteName('OrderDetailsPage', routes, {
@@ -233,7 +242,7 @@ export class CheckoutPageComponent extends Component {
 
     const isLoading = !this.state.dataLoaded || speculateTransactionInProgress;
 
-    const { listing, bookingDates, bookingData, enquiredTransaction } = this.state.pageData;
+    const { listing, bookingDates, bookingData, enquiredTransaction, protectedData } = this.state.pageData;
     const currentTransaction = ensureTransaction(
       speculatedTransaction,
       {},
@@ -294,17 +303,43 @@ export class CheckoutPageComponent extends Component {
 
 
     const bookingend = this.state.pageData.bookingDates.bookingEnd;
-    const timeend = intl.formatMessage(
+    const bookingStart = this.state.pageData.bookingDates.bookingStart;
+
+    console.log({bookingend})
+    console.log({bookingStart})
+    
+    const timestartInfo = intl.formatMessage(
       { id: 'checkoutPage.time' },
+    );
+
+    const timeend = intl.formatMessage(
+      { id: 'checkoutPage.timeEnd' },
       { bookingend }
     );
 
+    const timestart = intl.formatMessage(
+      { id: 'checkoutPage.timeStartInfo' },
+      { bookingStart }
+    );
+    
+
+    const timeendInfo = intl.formatMessage(
+      { id: 'checkoutPage.timeInfo' },
+      { bookingend }
+    );
+    
+
     const bookingLocation = this.state.pageData.bookingData.location.selectedPlace.address;
+  
     const bookingAddress = intl.formatMessage(
       { id: 'checkoutPage.Location' },
       { bookingLocation }
     );
     
+
+    const bookingAddressInfo = intl.formatMessage(
+      { id: 'checkoutPage.LocationInfo' },
+    );
 
     const bookingPerson = this.state.pageData.bookingData.bookingDatesPersons;
     const bookingPersons = intl.formatMessage(
@@ -312,13 +347,26 @@ export class CheckoutPageComponent extends Component {
       { bookingPerson }
     );
     const bookingBudget = this.state.pageData.bookingData.bookingDatesBudget;
+   
     const bookingBudgetPL = intl.formatMessage(
       { id: 'checkoutPage.Budget' },
       { bookingBudget }
     );
     
+    const bookingBudgetInfo = intl.formatMessage(
+      { id: 'checkoutPage.BudgetInfo' },
+    );
+
+    const bookingPersonsInfo = intl.formatMessage(
+      { id: 'checkoutPage.PersonsInfo' },
+
+    );
+
+
+
      
     console.log({bookingend})
+  
     
     const firstImage =
       currentListing.images && currentListing.images.length > 0
@@ -566,11 +614,37 @@ export class CheckoutPageComponent extends Component {
                   values={{ name: authorDisplayName }}
                 />
               </div>
-              <p className={css.detailsTitle}>{timeend}</p>
-              <p className={css.detailsTitle}>{bookingAddress}</p>
-              <p className={css.detailsTitle}>{bookingPersons}</p>
-              <p className={css.detailsTitle}>{bookingBudgetPL}</p>
-          
+
+              <div className={css.Outerbookingdetails}>
+                
+                <div className={css.OuterbookingPeriodDiv}>
+                  <div className={css.outerdiv}>
+                      <p className={css.detailsTitle}>{timestartInfo}</p>
+                      <p className={css.detailsTitle}>{timestart}</p>
+                      </div>
+                      <div className={css.outerdiv}>
+                      <p className={css.detailsTitle}>{timeend}</p>
+                      <p className={css.detailsTitle}>{timeendInfo}</p>
+                  </div>
+                 </div>
+
+              <div className={css.bookingDetails}>
+                <div className={css.details}>
+                <p className={css.InfoDetails}>{bookingAddressInfo}</p>
+
+              <p className={css.InfoDetails}>{bookingAddress}</p>
+              </div>
+              <div className={css.details}>
+              <p className={css.InfoDetails}>{bookingPersonsInfo}</p>
+              <p className={css.InfoDetails}>{bookingPersons}</p>
+              </div>
+              <div className={css.details}>
+              <p className={css.InfoDetails}>{bookingBudgetInfo}</p>
+              <p className={css.InfoDetails}>{bookingBudgetPL}</p>
+
+              </div>
+              </div>
+              </div>
             </div>
 
             <section className={css.paymentContainer}>
@@ -665,6 +739,7 @@ const mapStateToProps = state => {
     speculatedTransaction,
     enquiredTransaction,
     initiateOrderError,
+    protectedData,
   } = state.CheckoutPage;
   const { currentUser } = state.user;
 
@@ -679,6 +754,7 @@ const mapStateToProps = state => {
     enquiredTransaction,
     listing,
     initiateOrderError,
+    protectedData
   };
 };
 

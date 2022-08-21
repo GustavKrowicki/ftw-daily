@@ -8,6 +8,7 @@ import { NotFoundPage } from './containers';
 // at that point css bundling / imports will happen in wrong order.
 import { NamedRedirect } from './components';
 
+
 const pageDataLoadingAPI = getPageDataLoadingAPI();
 
 const AboutPage = loadable(() => import(/* webpackChunkName: "AboutPage" */ './containers/AboutPage/AboutPage'));
@@ -31,11 +32,7 @@ const SearchPage = loadable(() => import(/* webpackChunkName: "SearchPage" */ /*
 const StripePayoutPage = loadable(() => import(/* webpackChunkName: "StripePayoutPage" */ './containers/StripePayoutPage/StripePayoutPage'));
 const TermsOfServicePage = loadable(() => import(/* webpackChunkName: "TermsOfServicePage" */ './containers/TermsOfServicePage/TermsOfServicePage'));
 const TransactionPage = loadable(() => import(/* webpackChunkName: "TransactionPage" */ './containers/TransactionPage/TransactionPage'));
-const Chargebee = loadable(() =>
-  import(
-    /* webpackChunkName: "Chargebee" */ './containers/Chargebee/Chargebee'
-  )
-);
+const PricingPage = loadable(() => import(/* webpackChunkName: "PricingPage" */ './containers/PricingPage/PricingPage'));
 
 // Styleguide helps you to review current components and develop new ones
 const StyleguidePage = loadable(() => import(/* webpackChunkName: "StyleguidePage" */ './containers/StyleguidePage/StyleguidePage'));
@@ -74,9 +71,9 @@ const routeConfiguration = () => {
       component: AboutPage,
     },
     {
-      path: '/Chargebee',
-      name: 'Chargebee',
-      component: Chargebee,
+      path: '/PricingPage',
+      name: 'PricingPage',
+      component: PricingPage,
     },
     {
       path: '/s',

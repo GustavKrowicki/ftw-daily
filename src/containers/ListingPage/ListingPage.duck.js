@@ -161,7 +161,7 @@ export const showListing = (listingId, isOwn = false) => (dispatch, getState, sd
   dispatch(fetchCurrentUser());
   const params = {
     id: listingId,
-    include: ['author', 'author.profileImage', 'images'],
+    include: ['author', 'author.profileImage', 'images', 'bookingDatesPersons', 'bookingDatesBudget', 'location',],
     'fields.image': [
       // Listing page
       'variants.landscape-crop',
@@ -276,7 +276,7 @@ export const sendEnquiry = (listingId, message) => (dispatch, getState, sdk) => 
   const bodyParams = {
     transition: TRANSITION_ENQUIRE,
     processAlias: config.bookingProcessAlias,
-    params: { listingId },
+    params: { listingId, bookingDatesPersons },
   };
   return sdk.transactions
     .initiate(bodyParams)
@@ -296,9 +296,9 @@ export const sendEnquiry = (listingId, message) => (dispatch, getState, sdk) => 
     });
 };
 
-export const fetchTransactionLineItems = ({ bookingData, listingId, isOwnListing }) => dispatch => {
+export const fetchTransactionLineItems = ({ bookingData, listingId, isOwnListing, protectedData }) => dispatch => {
   dispatch(fetchLineItemsRequest());
-  transactionLineItems({ bookingData, listingId, isOwnListing })
+  transactionLineItems({ bookingData, listingId, isOwnListing, protectedData })
     .then(response => {
       const lineItems = response.data;
       dispatch(fetchLineItemsSuccess(lineItems));
@@ -308,6 +308,7 @@ export const fetchTransactionLineItems = ({ bookingData, listingId, isOwnListing
       log.error(e, 'fetching-line-items-failed', {
         listingId: listingId.uuid,
         bookingData: bookingData,
+        protectedData: bookingData,
       });
     });
 };

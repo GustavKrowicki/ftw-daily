@@ -91,11 +91,12 @@ export class ListingPageComponent extends Component {
     const listingId = new UUID(params.id);
     const listing = getListing(listingId);
 
-    const { bookingDates, ...bookingData } = values;
+    const { bookingDates, bookingDatesPerson, ...bookingData  } = values;
 
     const initialValues = {
       listing,
       bookingData,
+      bookingDatesPerson,
       bookingDates: {
         bookingStart: bookingDates.startDate,
         bookingEnd: bookingDates.endDate,
@@ -103,6 +104,7 @@ export class ListingPageComponent extends Component {
       confirmPaymentError: null,
     };
 
+      console.log({initialValues})
     const saveToSessionStorage = !this.props.currentUser;
 
     const routes = routeConfiguration();
@@ -186,6 +188,7 @@ export class ListingPageComponent extends Component {
       lineItems,
       fetchLineItemsInProgress,
       fetchLineItemsError,
+      bookingDatesPerson,
     } = this.props;
 
     const listingId = new UUID(rawParams.id);
@@ -545,6 +548,7 @@ const mapStateToProps = state => {
     fetchLineItemsInProgress,
     fetchLineItemsError,
     enquiryModalOpenForListingId,
+    protectedData
   } = state.ListingPage;
   const { currentUser } = state.user;
 
@@ -586,8 +590,8 @@ const mapDispatchToProps = dispatch => ({
   callSetInitialValues: (setInitialValues, values, saveToSessionStorage) =>
     dispatch(setInitialValues(values, saveToSessionStorage)),
   onFetchTransactionLineItems: (bookingData, listingId, isOwnListing) =>
-    dispatch(fetchTransactionLineItems(bookingData, listingId, isOwnListing)),
-  onSendEnquiry: (listingId, message) => dispatch(sendEnquiry(listingId, message)),
+    dispatch(fetchTransactionLineItems(bookingData, listingId, isOwnListing, protectedData)),
+  onSendEnquiry: (listingId, message, protectedData) => dispatch(sendEnquiry(listingId, message, protectedData)),
   onInitializeCardPaymentData: () => dispatch(initializeCardPaymentData()),
 });
 

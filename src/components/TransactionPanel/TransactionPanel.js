@@ -305,6 +305,39 @@ export class TransactionPanelComponent extends Component {
 
  
 
+    const bookingBudgetInfo = intl.formatMessage(
+      { id: 'checkoutPage.BudgetInfo' },
+    );
+
+  const budget = currentTransaction.attributes.protectedData.bookingDatesBudget
+   const transactionBudget = intl.formatMessage(
+      { id: 'transactionPanel.budget' },
+      {budget}
+    );
+
+ const bookingPersonsInfo = intl.formatMessage(
+      { id: 'checkoutPage.PersonsInfo' },
+
+    );
+
+  const persons = currentTransaction.attributes.protectedData.bookingDatesPersons
+    const transactionPersons = intl.formatMessage(
+      { id: 'transactionPanel.persons' },
+      {persons}
+    );
+  
+     const bookingAddressInfo = intl.formatMessage(
+      { id: 'checkoutPage.LocationInfo' },
+    );
+
+  const transactionLocation = currentTransaction.attributes.protectedData.location
+  const transactionLocationInfo = intl.formatMessage(
+      { id: 'checkoutPage.LocationInfo' },
+      {transactionLocation}
+    );
+
+
+
     const firstImage =
       currentListing.images && currentListing.images.length > 0 ? currentListing.images[0] : null;
 
@@ -376,7 +409,22 @@ export class TransactionPanelComponent extends Component {
                 geolocation={geolocation}
                 showAddress={stateData.showAddress}
               />
+             
               <BreakdownMaybe transaction={currentTransaction} transactionRole={transactionRole} />
+              <div className={css.outer_breakdown_details}>
+              <div className={css.inner_breakdown_details}>
+             <p className={css.InfoDetails}>{bookingPersonsInfo}</p>
+              <p className={css.InfoDetails}>{transactionPersons}</p>
+              </div>
+              <div className={css.inner_breakdown_details}>
+              <p className={css.InfoDetails}>{bookingBudgetInfo}</p>
+              <p className={css.InfoDetails}>{budget}</p>
+              </div>
+              <div className={css.inner_breakdown_details}>
+              <p className={css.InfoDetails}>{transactionLocationInfo}</p>
+              <p className={css.InfoDetails}>{transactionLocation}</p>
+              </div>
+              </div>
             </div>
 
             {savePaymentMethodFailed ? (
@@ -441,6 +489,7 @@ export class TransactionPanelComponent extends Component {
                 geolocation={geolocation}
                 showAddress={stateData.showAddress}
               />
+              
               {stateData.showBookingPanel ? (
                 <BookingPanel
                   className={css.bookingPanel}
@@ -459,14 +508,29 @@ export class TransactionPanelComponent extends Component {
                   fetchLineItemsInProgress={fetchLineItemsInProgress}
                   fetchLineItemsError={fetchLineItemsError}
                 />
+                
               ) : null}
+              
               <BreakdownMaybe
                 className={css.breakdownContainer}
                 transaction={currentTransaction}
                 transactionRole={transactionRole}
                 bookingLocation={bookingAddress}
               />
-
+              <div className={css.outer_breakdown_details}>
+              <div className={css.inner_breakdown_details}>
+             <p className={css.InfoDetails}>{bookingPersonsInfo}</p>
+              <p className={css.InfoDetails}>{transactionPersons}</p>
+              </div>
+              <div className={css.inner_breakdown_details}>
+              <p className={css.InfoDetails}>{bookingBudgetInfo}</p>
+              <p className={css.InfoDetails}>{budget}</p>
+              </div>
+              <div className={css.inner_breakdown_details}>
+              <p className={css.InfoDetails}>{transactionLocationInfo}</p>
+              <p className={css.InfoDetails}>{transactionLocation}</p>
+              </div>
+              </div>
               {stateData.showSaleButtons ? (
                 <div className={css.desktopActionButtons}>{saleButtons}</div>
               ) : null}

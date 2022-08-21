@@ -14,6 +14,8 @@ const BreakdownMaybe = props => {
   const classes = classNames(rootClassName || css.breakdownMaybe, className);
   const breakdownClasses = classNames(breakdownClassName || css.breakdown);
 
+
+
   return loaded ? (
     <div className={classes}>
       <BookingBreakdown
@@ -24,6 +26,7 @@ const BreakdownMaybe = props => {
         booking={transaction.booking}
         dateType={DATE_TYPE_DATE}
       />
+      
     </div>
   ) : null;
 };

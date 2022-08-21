@@ -252,9 +252,10 @@ export class BookingDatesFormComponent extends Component {
               className={css.bookingDatesBudget}
               name="bookingDatesBudget"
               type="text"
-              id="bookingDatesBudget"
+              id={formId ? `${formId}.bookingDatesBudget` : 'bookingDatesBudget'}
               label={bookingDatesBudgetLabel}
               placeholder={bookingDatesBudgetPlaceholderMessage}
+              valueFromForm={values.bookingDatesBudget}
               />
 
 
@@ -262,18 +263,20 @@ export class BookingDatesFormComponent extends Component {
               className={css.bookingDatesBudget}
               name="bookingDatesPersons"
               type="text"
-              id="bookingDatesPersons"
+              id={formId ? `${formId}.bookingDatesPersons` : 'bookingDatesPersons'}
               label={bookingDatesPersonsLabel}
               placeholder={bookingDatesPersonsPlaceholderMessage}
+              valueFromForm={values.bookingDatesPersons}
               />
 
             <LocationAutocompleteInputField
-            className={css.bookingDatesBudget}
             iconClassName={css.locationAutocompleteInputIcon}
             predictionsClassName={css.predictionsRoot}
             validClassName={css.validLocation}
+            className={css.bookingDatesBudget}
             autoFocus
             name="location"
+            id={formId ? `${formId}.location` : 'location'}
             label={titleRequiredMessage}
             placeholder={addressPlaceholderMessage}
             useDefaultPredictions={false}

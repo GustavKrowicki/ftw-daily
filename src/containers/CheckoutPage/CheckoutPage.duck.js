@@ -161,7 +161,7 @@ export const stripeCustomerError = e => ({
 
 /* ================ Thunks ================ */
 
-export const initiateOrder = (orderParams, transactionId) => (dispatch, getState, sdk) => {
+export const initiateOrder = (orderParams, transactionId, protectedData) => (dispatch, getState, sdk) => {
   dispatch(initiateOrderRequest());
 
   // If we already have a transaction ID, we should transition, not
@@ -175,18 +175,21 @@ export const initiateOrder = (orderParams, transactionId) => (dispatch, getState
   const bookingData = {
     startDate: orderParams.bookingStart,
     endDate: orderParams.bookingEnd,
+    
+  
   };
 
   const bodyParams = isTransition
     ? {
         id: transactionId,
         transition,
-        params: orderParams,
+        params: { ...orderParams},
       }
     : {
         processAlias: config.bookingProcessAlias,
         transition,
-        params: orderParams,
+        params:  { ...orderParams},
+        
       };
   const queryParams = {
     include: ['booking', 'provider'],
@@ -315,7 +318,7 @@ export const speculateTransaction = (orderParams, transactionId) => (dispatch, g
   };
 
   const params = {
-    ...orderParams,
+    ...orderParams, 
     cardToken: 'CheckoutPage_speculative_card_token',
   };
 
@@ -346,11 +349,12 @@ export const speculateTransaction = (orderParams, transactionId) => (dispatch, g
   };
 
   const handleError = e => {
-    const { listingId, bookingStart, bookingEnd } = params;
+    const { listingId, bookingStart, bookingEnd,  } = params;
     log.error(e, 'speculate-transaction-failed', {
       listingId: listingId.uuid,
       bookingStart,
       bookingEnd,
+     
     });
     return dispatch(speculateTransactionError(storableError(e)));
   };

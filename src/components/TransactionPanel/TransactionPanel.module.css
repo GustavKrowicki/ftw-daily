@@ -312,6 +312,27 @@
   }
 }
 
+.outer_breakdown_details{
+
+  @media (--viewportLarge) {
+    margin-top: -40px;
+  }
+}
+
+.inner_breakdown_details{
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 20px;
+  @media (--viewportLarge) {
+  
+    padding: 0px 50px;
+  }
+  
+}
+
+
+
+
 /* FeedSection subcomponent */
 .feedHeading {
   color: var(--matterColorAnti);
