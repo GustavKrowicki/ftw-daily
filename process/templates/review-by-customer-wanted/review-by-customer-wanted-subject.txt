@@ -1,1 +1,1 @@
-Write a review for {{transaction.listing.title}}
+Skriv en anmeldelse ang. {{transaction.listing.title}}

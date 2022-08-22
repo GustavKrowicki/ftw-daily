@@ -9,80 +9,19 @@
 
 <html>
   <body>
-    <h1>Your booking request was accepted!</h1>
+    <h1>Din booking anmodning er blevet accepteret!</h1>
 
     {{#with transaction}}
-    <p>{{provider.display-name}} has accepted your booking request for {{listing.title}} from {{> format-date date=booking.start}} to {{> format-date date=booking.end}}.</p>
+    <p>{{provider.display-name}} har accepteret din booking anmodning angående {{listing.title}} fra {{> format-date date=booking.start}} til {{> format-date date=booking.end}}.</p>
 
-    <p>We have charged {{> format-money money=payin-total}} from your credit card. Here's your receipt.</p>
+    <p>Du har nu mulighed for at skrive yderligere til {{provider.display-name}} angående din booking <a href="{{marketplace.url}}/order/{{url-encode id}}/details">her</a></p> 
 
-    <table>
-      <thead>
-        <tr>
-          <th style="text-align: left;">Payment</th>
-        </tr>
-      </thead>
-      <tbody>
-      {{#each tx-line-items}}
-        {{#contains include-for "customer"}}
-          {{#eq "line-item/day" code}}
-              <tr>
-                <td>Price per day</td>
-                <td style="text-align: right; padding-left: 20px">{{> format-money money=unit-price}}</td>
-              </tr>
-              {{#if seats}}
-              <tr>
-                <td>Days</td>
-                <td style="text-align: right; padding-left: 20px">&times; {{number units}}</td>
-              </tr>
-              <tr>
-                <td>Seats</td>
-                <td style="text-align: right; padding-left: 20px">&times; {{number seats}}</td>
-              </tr>
-              {{else}}
-              <tr>
-                <td>Days</td>
-                <td style="text-align: right; padding-left: 20px">&times; {{number quantity}}</td>
-              </tr>
-              {{/if}}
-          {{/eq}}
 
-          {{#eq "line-item/night" code}}
-            <tr>
-              <td>Price per night</td>
-              <td style="text-align: right; padding-left: 20px">{{> format-money money=unit-price}}</td>
-            </tr>
-            {{#if seats}}
-            <tr>
-              <td>Nights</td>
-              <td style="text-align: right; padding-left: 20px">&times; {{number units}}</td>
-            </tr>
-            <tr>
-              <td>Seats</td>
-              <td style="text-align: right; padding-left: 20px">&times; {{number seats}}</td>
-            </tr>
-            {{else}}
-            <tr>
-              <td>Nights</td>
-              <td style="text-align: right; padding-left: 20px">&times; {{number quantity}}</td>
-            </tr>
-            {{/if}}
-          {{/eq}}
-        {{/contains}}
-      {{/each}}
-      </tbody>
-      <tfoot>
-        <tr>
-          <th style="text-align: left;">Payment total</th>
-          <th style="text-align: left; padding-left: 20px;">{{> format-money money=payin-total}}</th>
-        </tr>
-      </tfoot>
-    </table>
 
     {{/with}}
 
     <hr />
 
-    <p>You have received this email notification because you are a member of {{marketplace.name}}. If you no longer wish to receive these emails, please contact {{marketplace.name}} team.</p>
+    <p>Du modtager denne email, grundet du har en bod listet hos{{marketplace.name}}. Hvis du ikke længere ønsker at modtage disse emails, venligst kontakt {{marketplace.name}} teamet.</p>
   </body>
 </html>

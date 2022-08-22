@@ -1,1 +1,1 @@
-{{transaction.customer.display-name}} has requested to book {{transaction.listing.title}}
+{{transaction.customer.display-name}} Har anmodet om at booke {{transaction.listing.title}}

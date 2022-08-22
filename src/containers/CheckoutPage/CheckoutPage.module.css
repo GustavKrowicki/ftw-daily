@@ -174,7 +174,7 @@
 
   /* Reset margins from font styles */
   margin-top: 0;
-  margin-bottom: 0;
+  margin-bottom: 10px;
 
   @media (--viewportMedium) {
     margin-top: 0;
@@ -230,6 +230,7 @@
 }
 
 .Outerbookingdetails {
+  
   @media (--viewportLarge) {
     flex-shrink: 0;
 
@@ -262,43 +263,26 @@
 }
 
 
-.outerdiv{
-  flex-direction: column;
+.bookingDetails{
+  margin-top: -40px;
 }
 
-.bookingDetails{
-  display: flex;
-  
-  @media (--viewportLarge) {
-  
-    flex-direction: column;
-    
-    }
-}
 
 
 .details{
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
-  @media (--viewportLarge) {
   
-    flex-direction: row;
-    
-    }
 
 }
 
 .InfoDetails{
-  display: flex;
-  gap: 30px;
-  @media (--viewportLarge) {
-  
-   
-   
-    }
-
+padding-left: 10px;
+@media (--viewportLarge) {
+  padding-left: -10px;
 }
-
+}
 
 .orderError,
 .notFoundError {

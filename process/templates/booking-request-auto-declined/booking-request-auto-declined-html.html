@@ -5,16 +5,17 @@
 
 <html>
   <body>
-    <h1>Your booking request has expired.</h1>
+    <h1>Din booking anmodning er desværre udløbet</h1>
 
     {{#with transaction}}
-    <p>Unfortunately {{provider.display-name}} didn't respond to your booking request for {{listing.title}} from {{> format-date date=booking.start}} to {{> format-date date=booking.end}} on time, so the request has expired. You have not been billed.</p>
+    <p>Desværre har {{provider.display-name}} ikke besvaret din booking anmodning angående {{listing.title}} fra {{> format-date date=booking.start}} til {{> format-date date=booking.end}} i tide, så anmodningen er udløbet. </p>
     {{/with}}
 
-    <p><a href="{{marketplace.url}}">Try to book something else instead</a></p>
+    <p> Dette er vi meget ærgerlige over hos Catery, og vi vil dermed tage kontakt til {{listing.title}} </p>
+    <p><a href="{{marketplace.url}}">Det er stadigt muligt at booke andre madboder her</a></p>
 
     <hr />
 
-    <p>You have received this email notification because you are a member of {{marketplace.name}}. If you no longer wish to receive these emails, please contact {{marketplace.name}} team.</p>
+    <p>Du modtager denne email, grundet du har en bod listet hos{{marketplace.name}}. Hvis du ikke længere ønsker at modtage disse emails, venligst kontakt {{marketplace.name}} teamet.</p>
   </body>
 </html>

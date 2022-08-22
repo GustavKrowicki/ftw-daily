@@ -9,7 +9,7 @@ import { Form as FinalForm } from 'react-final-form';
 import classNames from 'classnames';
 import routeConfiguration from '../../routeConfiguration';
 import { pathByRouteName, findRouteByRouteName } from '../../util/routes';
-import { propTypes, LINE_ITEM_NIGHT, LINE_ITEM_DAY } from '../../util/types';
+import { propTypes, LINE_ITEM_NIGHT, LINE_ITEM_DAY, DATE_TYPE_DATE } from '../../util/types';
 import {
   ensureListing,
   ensureUser,
@@ -101,6 +101,9 @@ export class CheckoutPageComponent extends Component {
       enquiredTransaction,
       fetchSpeculatedTransaction,
       history,
+      startDate,
+       endDate,
+        dateType
     } = this.props;
     // Browser's back navigation should not rewrite data in session store.
     // Action is 'POP' on both history.back() and page refresh cases.
@@ -284,7 +287,7 @@ export class CheckoutPageComponent extends Component {
       return <NamedRedirect name="ListingPage" params={params} />;
     }
 
-    const bookingDatoer = bookingDates.startDate;
+   
 
     const listingTitle = currentListing.attributes.title;
     const title = intl.formatMessage(
@@ -302,16 +305,20 @@ export class CheckoutPageComponent extends Component {
 
 
 
-    const bookingend = this.state.pageData.bookingDates.bookingEnd;
-    const bookingStart = this.state.pageData.bookingDates.bookingStart;
+    const bookingstart = currentBooking.attributes;
+    const bookingend = currentBooking.attributes;
+    
+    
 
-    console.log({bookingend})
-    console.log({bookingStart})
+    
+    console.log({bookingend});
+   
     
     const timestartInfo = intl.formatMessage(
       { id: 'checkoutPage.time' },
+      {bookingstart}
     );
-
+/*
     const timeend = intl.formatMessage(
       { id: 'checkoutPage.timeEnd' },
       { bookingend }
@@ -319,7 +326,7 @@ export class CheckoutPageComponent extends Component {
 
     const timestart = intl.formatMessage(
       { id: 'checkoutPage.timeStartInfo' },
-      { bookingStart }
+     {bookingstart}
     );
     
 
@@ -328,7 +335,7 @@ export class CheckoutPageComponent extends Component {
       { bookingend }
     );
     
-
+*/
     const bookingLocation = this.state.pageData.bookingData.location.selectedPlace.address;
   
     const bookingAddress = intl.formatMessage(
@@ -364,8 +371,20 @@ export class CheckoutPageComponent extends Component {
 
 
 
-     
-    console.log({bookingend})
+    const tx = currentTransaction;
+    const txBooking = ensureBooking(tx.booking);
+    const breakdown =
+      tx.id && txBooking.id ? (
+        <BookingBreakdown
+          className={css.bookingBreakdown}
+          userRole="customer"
+          unitType={config.bookingUnitType}
+          transaction={tx}
+          booking={txBooking}
+          dateType={DATE_TYPE_DATE}
+        />
+      ) : null;
+   
   
     
     const firstImage =
@@ -546,6 +565,7 @@ export class CheckoutPageComponent extends Component {
       { messageOptionalText: messageOptionalText }
     );
 
+   
     const bookingForm = (
       <FinalForm
         onSubmit={values => this.handleSubmit(values)}
@@ -587,6 +607,7 @@ export class CheckoutPageComponent extends Component {
       />
     );
 
+    
     return (
       <Page {...pageProps}>
         {topbar}
@@ -618,20 +639,19 @@ export class CheckoutPageComponent extends Component {
               <div className={css.Outerbookingdetails}>
                 
                 <div className={css.OuterbookingPeriodDiv}>
-                  <div className={css.outerdiv}>
-                      <p className={css.detailsTitle}>{timestartInfo}</p>
-                      <p className={css.detailsTitle}>{timestart}</p>
-                      </div>
-                      <div className={css.outerdiv}>
-                      <p className={css.detailsTitle}>{timeend}</p>
-                      <p className={css.detailsTitle}>{timeendInfo}</p>
-                  </div>
+                
+                      
+                    
+                      <div className={css.priceBreakdownContainer}>
+              {speculateTransactionErrorMessage}
+              {breakdown}
+            </div>
+                  
                  </div>
-
+                 </div>
               <div className={css.bookingDetails}>
                 <div className={css.details}>
                 <p className={css.InfoDetails}>{bookingAddressInfo}</p>
-
               <p className={css.InfoDetails}>{bookingAddress}</p>
               </div>
               <div className={css.details}>
@@ -644,7 +664,7 @@ export class CheckoutPageComponent extends Component {
 
               </div>
               </div>
-              </div>
+              
             </div>
 
             <section className={css.paymentContainer}>
@@ -677,6 +697,7 @@ export class CheckoutPageComponent extends Component {
            
             
             {speculateTransactionErrorMessage}
+            {breakdown}
           </div>
         </div>
       </Page>

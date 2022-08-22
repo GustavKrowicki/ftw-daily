@@ -165,57 +165,8 @@ export const TransactionPageComponent = props => {
     ? deletedListingTitle
     : currentListing.attributes.title;
 
-  //const TransactionStart = transaction.booking.attributes.start;
  
-
-  const bla = currentTransaction.attributes.protectedData
-  console.log({bla}) 
-  /*
-    const bookingBudgetInfo = intl.formatMessage(
-      { id: 'checkoutPage.BudgetInfo' },
-    );
-
-  const budget = currentTransaction.attributes.protectedData.bookingDatesBudget
-   const transactionBudget = intl.formatMessage(
-      { id: 'transactionPage.budget' },
-      {budget}
-    );
-
- const bookingPersonsInfo = intl.formatMessage(
-      { id: 'checkoutPage.PersonsInfo' },
-
-    );
-
-  const persons = currentTransaction.attributes.protectedData.bookingDatesPersons
-    const transactionPersons = intl.formatMessage(
-      { id: 'transactionPage.persons' },
-      {persons}
-    );
-
-     const bookingAddressInfo = intl.formatMessage(
-      { id: 'checkoutPage.LocationInfo' },
-    );
-
-  const location = currentTransaction.attributes.protectedData.location
-  const transactionLocation = intl.formatMessage(
-      { id: 'transactionPage.location' },
-      {location}
-    );
-*/
-
-
-
   
-
-/*
-  
-      const TransactionPageStart = currentBooking.attributes.end;
-    const bookingStarting = intl.formatMessage(
-      { id: 'TransactionPage.Starting' },
-      { TransactionPageStart }
-    );
-    
-*/
     //console.log({TransactionPageStart})
   // Redirect users with someone else's direct link to their own inbox/sales or inbox/orders page.
   const isDataAvailable =
