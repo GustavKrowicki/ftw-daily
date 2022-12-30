@@ -40,10 +40,8 @@ const PricingPage = () => {
           <h1>Some content</h1>
           
           <div>
-            <NamedLink name="LandingPage">Go to home page</NamedLink> or
-            <ExternalLink href="https://google.com">
-              Go to Google
-            </ExternalLink>
+            <NamedLink name="LandingPage">Pricing </NamedLink> or
+          
             <stripe-pricing-table
       pricing-table-id="prctbl_1LT9MDLqmfo9asOyHU4zVnYW"
       publishable-key={process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY}

@@ -43,6 +43,7 @@
     overflow-x: hidden;
     font-weight: var(--fontWeightRegular);
     transition: var(--transitionStyleButton);
+    
   }
 }
 

@@ -911,7 +911,7 @@
   "StripePaymentForm.stripe.invalid_request_error": "Invalid request to Stripe API.",
   "StripePaymentForm.stripe.rate_limit_error": "Too many requests to Stripe API.",
   "StripePaymentForm.stripe.validation_error.card_declined": "The card was declined.",
-  "StripePaymentForm.stripe.validation_error.expired_card": "The card has expired.",
+  "StripePaymentForm.stripe.validation_error.expired_card": "The card has expiredsss.",
   "StripePaymentForm.stripe.validation_error.incomplete_number": "Your card number is incomplete.",
   "StripePaymentForm.stripe.validation_error.incorrect_cvc": "The card's security code is incorrect.",
   "StripePaymentForm.stripe.validation_error.incorrect_number": "The card number is incorrect.",
